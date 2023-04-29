@@ -19,9 +19,19 @@ class AbstractCommunicator(ABC):
             print("[ERR] League Of Legends isn't open!")
             exit(1)
 
-    def _GET(self, endpoint: str) -> Response:
-        return requests.get(
+    def _GET(self, endpoint: str, debug: bool = False) -> Response:
+        response = requests.get(
             self.__host + endpoint,
             verify=False,
             headers={"Authorization": self.__authorization},
         )
+
+        if debug:
+            file_name = (
+                endpoint[: endpoint.find("?")] if endpoint.find("?") != -1 else endpoint
+            )
+            file_name = "-".join(file_name.split("/")[1:]) + ".json"
+            with open(f"./cache/{file_name}", "w") as debug_file:
+                debug_file.write(response.text)
+
+        return response
