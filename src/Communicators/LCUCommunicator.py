@@ -1,9 +1,10 @@
 from src.Communicators.AbstractCommunicator import AbstractCommunicator
+from src.Communicators.DataDragonCommunicator import DataDragonCommunicator
 from src.DTOs.ChampionMasteryDTO import ChampionMasteryDTO
 from src.DTOs.CurrentRankedInfoDTO import CurrentRankedInfoDTO
 from src.DTOs.SummonerDTO import SummonerDTO
 
-summoners_rift_queue_ids = [
+summoners_rift_queue_ids: list[int] = [
     400,  # 5v5 Draft Pick games
     420,  # 5v5 Ranked Solo games,
     430,  # 5v5 Blind Pick games
@@ -16,7 +17,9 @@ class LCUCommunicator(AbstractCommunicator):
         super().__init__("C:\\Riot Games\\League of Legends\\lockfile")
 
     def get_summoner_by_puuid(self, puuid: str) -> SummonerDTO:
-        json_response = self._GET(f"/lol-summoner/v2/summoners/puuid/{puuid}").json()
+        json_response: dict = self._GET(
+            f"/lol-summoner/v2/summoners/puuid/{puuid}"
+        ).json()
 
         return SummonerDTO(
             json_response["accountId"],
@@ -28,7 +31,7 @@ class LCUCommunicator(AbstractCommunicator):
         )
 
     def get_ranked_stats_by_puuid(self, puuid: str):
-        json_response = self._GET(f"/lol-ranked/v1/ranked-stats/{puuid}").json()
+        json_response: dict = self._GET(f"/lol-ranked/v1/ranked-stats/{puuid}").json()
 
         return CurrentRankedInfoDTO(
             json_response["queueMap"]["RANKED_SOLO_5x5"]["tier"],
@@ -39,7 +42,7 @@ class LCUCommunicator(AbstractCommunicator):
         )
 
     def get_sr_streak_status_by_puuid(self, puuid: str) -> str:
-        json_response = self._GET(
+        json_response: dict = self._GET(
             f"/lol-match-history/v1/products/lol/{puuid}/matches"
         ).json()
 
@@ -66,17 +69,23 @@ class LCUCommunicator(AbstractCommunicator):
                         return f"{index + 1} {'Winning streak' if game_result else 'Losing streak'}"
 
     def get_top_mastery_champions_by_summoner_id(
-        self, summoner_id: int, limit: int = 3
+        self,
+        summoner_id: int,
+        data_dragon_communicator: DataDragonCommunicator,
+        limit: int = 3,
     ) -> list[ChampionMasteryDTO]:
-        json_response = self._GET(
-            f"/lol-collections/v1/inventories/{summoner_id}/champion-mastery/top?limit={limit}"
+        json_response: dict = self._GET(
+            f"/lol-collections/v1/inventories/{summoner_id}/champion-mastery/top?limit={limit}",
+            True,
         ).json()
 
         return_list: list[ChampionMasteryDTO] = []
         for champion in json_response["masteries"]:
             return_list.append(
                 ChampionMasteryDTO(
-                    champion["championId"],
+                    data_dragon_communicator.get_champion_name_by_id(
+                        champion["championId"]
+                    ),
                     champion["championLevel"],
                     champion["championPoints"],
                 )
