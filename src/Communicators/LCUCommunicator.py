@@ -17,7 +17,7 @@ class LCUCommunicator(AbstractCommunicator):
         super().__init__("C:\\Riot Games\\League of Legends\\lockfile")
 
     def get_summoner_by_puuid(self, puuid: str) -> SummonerDTO:
-        json_response: dict = self._GET(
+        json_response = self._GET(
             f"/lol-summoner/v2/summoners/puuid/{puuid}"
         ).json()
 
@@ -31,7 +31,7 @@ class LCUCommunicator(AbstractCommunicator):
         )
 
     def get_ranked_stats_by_puuid(self, puuid: str):
-        json_response: dict = self._GET(f"/lol-ranked/v1/ranked-stats/{puuid}").json()
+        json_response = self._GET(f"/lol-ranked/v1/ranked-stats/{puuid}").json()
 
         return CurrentRankedInfoDTO(
             json_response["queueMap"]["RANKED_SOLO_5x5"]["tier"],
@@ -42,7 +42,7 @@ class LCUCommunicator(AbstractCommunicator):
         )
 
     def get_sr_streak_status_by_puuid(self, puuid: str) -> str:
-        json_response: dict = self._GET(
+        json_response = self._GET(
             f"/lol-match-history/v1/products/lol/{puuid}/matches"
         ).json()
 
@@ -74,7 +74,7 @@ class LCUCommunicator(AbstractCommunicator):
         data_dragon_communicator: DataDragonCommunicator,
         limit: int = 3,
     ) -> list[ChampionMasteryDTO]:
-        json_response: dict = self._GET(
+        json_response = self._GET(
             f"/lol-collections/v1/inventories/{summoner_id}/champion-mastery/top?limit={limit}",
             True,
         ).json()
