@@ -1,5 +1,10 @@
 class ChampionMasteryDTO:
-    def __init__(self, champion_id: int, champion_level: int, champion_points: int):
-        self.championPoints = champion_points
-        self.championLevel = champion_level
-        self.champion_id = champion_id
+    def __init__(
+        self,
+        champion_name: str,
+        champion_level: int,
+        champion_points: int,
+    ):
+        self.champion_name = champion_name
+        self.champion_level = champion_level
+        self.champion_points = champion_points

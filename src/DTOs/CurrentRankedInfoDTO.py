@@ -9,4 +9,8 @@ class CurrentRankedInfoDTO:
         self.losses = losses
 
     def get_winrate_as_string(self) -> str:
-        return "%.2f" % (self.wins / (self.wins + self.losses) * 100)
+        return (
+            "%.2f %%" % (self.wins / (self.wins + self.losses) * 100)
+            if self.wins + self.losses > 0
+            else "- %%"
+        )

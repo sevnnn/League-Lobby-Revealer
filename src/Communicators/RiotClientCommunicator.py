@@ -12,8 +12,13 @@ class RiotClientCommunicator(AbstractCommunicator):
 
     def get_chat_participants(self) -> list[ChatParticipantsDTO]:
         json_response = self._GET("/chat/v5/participants").json()
-        chat_participants = []
+        chat_participants: list[ChatParticipantsDTO] = []
+        players_puuids: list[str] = []
         for player in json_response["participants"]:
+            if player["puuid"] in players_puuids:
+                continue
+
+            players_puuids.append(player["puuid"])
             chat_participants.append(
                 ChatParticipantsDTO(
                     player["game_name"],
