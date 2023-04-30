@@ -6,7 +6,7 @@ from src.Factories.PlayerInfoFactory import PlayerInfoFactory
 lcu = LCUCommunicator()
 
 # will handle "InGame" in another issue
-if lcu.get_current_client_phase() != "ChampSelect":
+if lcu.get_current_client_phase() != "\"ChampSelect\"":
     print("[ERR] Not in champion select")
     exit(1)
 
