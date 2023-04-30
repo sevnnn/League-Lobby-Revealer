@@ -17,7 +17,7 @@ class PlayerInfoDTO:
         self.champion_masteries = champion_masteries
         self.ranked_stats = ranked_stats
 
-    def printInfo(self):
+    def print_info(self):
         print(
             f"{self.username}\t-\tLevel {self.level}\t-\t{self.streak}\t-"
             f"\t{self.ranked_stats.tier} {self.ranked_stats.division} {self.ranked_stats.league_points} LP "
