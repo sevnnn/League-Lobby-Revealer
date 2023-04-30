@@ -15,7 +15,7 @@ class PlayerInfoFactory:
         self.riot_client = riot_client_communicator
         self.data_dragon_communicator = data_dragon_communicator
 
-    def getInfo(self) -> list[PlayerInfoDTO]:
+    def get_info(self) -> list[PlayerInfoDTO]:
         return_list: list[PlayerInfoDTO] = []
 
         for player in self.riot_client.get_chat_participants():

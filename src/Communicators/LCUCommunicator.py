@@ -89,3 +89,6 @@ class LCUCommunicator(AbstractCommunicator):
             )
 
         return return_list
+
+    def get_current_client_phase(self) -> str:
+        return self._GET("/lol-gameflow/v1/gameflow-phase").text
