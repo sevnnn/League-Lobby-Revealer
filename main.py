@@ -5,7 +5,7 @@ from src.Factories.PlayerInfoFactory import PlayerInfoFactory
 
 lcu = LCUCommunicator()
 
-# prob will need to add "InGame" to this if, but need to test what the chat endpoint will return when ingame
+# will handle "InGame" in another issue
 if lcu.get_current_client_phase() != "ChampSelect":
     print("[ERR] Not in champion select")
     exit(1)
