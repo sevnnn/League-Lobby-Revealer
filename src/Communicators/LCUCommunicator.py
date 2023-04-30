@@ -17,9 +17,7 @@ class LCUCommunicator(AbstractCommunicator):
         super().__init__("C:\\Riot Games\\League of Legends\\lockfile")
 
     def get_summoner_by_puuid(self, puuid: str) -> SummonerDTO:
-        json_response = self._GET(
-            f"/lol-summoner/v2/summoners/puuid/{puuid}"
-        ).json()
+        json_response = self._GET(f"/lol-summoner/v2/summoners/puuid/{puuid}").json()
 
         return SummonerDTO(
             json_response["accountId"],
@@ -75,8 +73,7 @@ class LCUCommunicator(AbstractCommunicator):
         limit: int = 3,
     ) -> list[ChampionMasteryDTO]:
         json_response = self._GET(
-            f"/lol-collections/v1/inventories/{summoner_id}/champion-mastery/top?limit={limit}",
-            True,
+            f"/lol-collections/v1/inventories/{summoner_id}/champion-mastery/top?limit={limit}"
         ).json()
 
         return_list: list[ChampionMasteryDTO] = []
