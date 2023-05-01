@@ -2,9 +2,11 @@ from src.Communicators.DataDragonCommunicator import DataDragonCommunicator
 from src.Communicators.LCUCommunicator import LCUCommunicator
 from src.Communicators.RiotClientCommunicator import RiotClientCommunicator
 from src.Factories.PlayerInfoFactory import PlayerInfoFactory
+from src.Settings import Settings
 from urllib.parse import quote
 
-lcu = LCUCommunicator()
+settings = Settings()
+lcu = LCUCommunicator(settings.get_league_of_legends_dir())
 
 # will handle "InGame" in another issue
 if lcu.get_current_client_phase() != '"ChampSelect"':

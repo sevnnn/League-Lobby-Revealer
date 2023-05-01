@@ -13,8 +13,8 @@ summoners_rift_queue_ids: list[int] = [
 
 
 class LCUCommunicator(AbstractCommunicator):
-    def __init__(self) -> None:
-        super().__init__("C:\\Riot Games\\League of Legends\\lockfile")
+    def __init__(self, league_of_legends_install_dir: str) -> None:
+        super().__init__(f"{league_of_legends_install_dir}\\lockfile")
 
     def get_summoner_by_puuid(self, puuid: str) -> SummonerDTO:
         json_response = self._GET(f"/lol-summoner/v2/summoners/puuid/{puuid}").json()
