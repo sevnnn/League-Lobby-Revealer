@@ -92,3 +92,6 @@ class LCUCommunicator(AbstractCommunicator):
 
     def get_current_client_phase(self) -> str:
         return self._GET("/lol-gameflow/v1/gameflow-phase").text
+
+    def get_current_player_server(self) -> str:
+        return self._GET("/riotclient/region-locale").json()["webRegion"]
