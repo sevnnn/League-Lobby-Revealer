@@ -95,3 +95,29 @@ class LCUCommunicator(AbstractCommunicator):
 
     def get_current_player_server(self) -> str:
         return self._GET("/riotclient/region-locale").json()["webRegion"]
+
+    def get_summoner_by_name(self, summoner_name: str) -> SummonerDTO:
+        json_response = self._GET(
+            f"/lol-summoner/v1/summoners?name={summoner_name}"
+        ).json()
+
+        return SummonerDTO(
+            json_response["accountId"],
+            json_response["displayName"],
+            json_response["internalName"],
+            json_response["puuid"],
+            json_response["summonerId"],
+            json_response["summonerLevel"],
+        )
+
+    def get_current_summoner(self) -> SummonerDTO:
+        json_response = self._GET(f"/lol-summoner/v1/current-summoner").json()
+
+        return SummonerDTO(
+            json_response["accountId"],
+            json_response["displayName"],
+            json_response["internalName"],
+            json_response["puuid"],
+            json_response["summonerId"],
+            json_response["summonerLevel"],
+        )
