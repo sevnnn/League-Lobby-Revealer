@@ -15,7 +15,7 @@ if __name__ == "__main__":
     lcu = LCUCommunicator(settings.get_league_of_legends_dir())
 
     # faster execution
-    if not lcu.get_current_client_phase() in ['"ChampSelect"', '"InGame"']:
+    if not lcu.get_current_client_phase() in ['"ChampSelect"', '"InProgress"']:
         raise NotValidClientPhaseException(lcu.get_current_client_phase())
 
     riot_client = RiotClientCommunicator()
@@ -28,7 +28,7 @@ if __name__ == "__main__":
             for player in player_info_factory.get_info_in_champ_select():
                 url_safe_player_names.append(quote(player.username))
                 player.print_info()
-        case '"InGame"':
+        case '"InProgress"':
             player_info_factory.in_game_api = InGameAPICommunicator()
             (
                 your_team_players,
