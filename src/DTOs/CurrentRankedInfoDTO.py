@@ -12,5 +12,5 @@ class CurrentRankedInfoDTO:
         return (
             "%.2f %%" % (self.wins / (self.wins + self.losses) * 100)
             if self.wins + self.losses > 0
-            else "- %%"
+            else "N/A %"
         )
