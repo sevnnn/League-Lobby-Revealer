@@ -57,7 +57,7 @@ class LCUCommunicator(AbstractCommunicator):
 
         match len(streak_result_list):
             case 0:
-                return "Unknown"
+                return "Unknown streak"
             case 1:
                 return f"1 {'Winning streak' if streak_result_list[0] else 'Losing streak'}"
             case _:
