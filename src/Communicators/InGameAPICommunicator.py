@@ -22,7 +22,6 @@ class InGameAPICommunicator:
             .split("\r\n")[3]
         )
         self.__host = f"https://{sub(' +', ':', powershell_parser_output)}"
-        print(self.__host)
 
     def _GET(self, endpoint: str) -> Response:
         return requests.get(self.__host + endpoint, verify=False)
