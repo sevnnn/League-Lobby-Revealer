@@ -1,13 +1,12 @@
 from abc import ABC
 from base64 import b64encode
 from requests import Response
+from src.Exceptions.LeagueNotOpenException import LeagueNotOpenException
 import requests
-import urllib3
 
 
 class AbstractCommunicator(ABC):
     def __init__(self, lockfile_path: str) -> None:
-        urllib3.disable_warnings()
         try:
             with open(lockfile_path, "r") as f:
                 lockfile = f.read().split(":")
@@ -16,8 +15,7 @@ class AbstractCommunicator(ABC):
                     f"Basic {b64encode(f'riot:{lockfile[3]}'.encode()).decode()}"
                 )
         except FileNotFoundError:
-            print("[ERR] League Of Legends isn't open!")
-            exit(1)
+            raise LeagueNotOpenException
 
     def _GET(self, endpoint: str, debug: bool = False) -> Response:
         response = requests.get(
