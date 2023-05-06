@@ -21,7 +21,7 @@ class PlayerInfoDTO:
 
     def print_info(self):
         print(
-            "\t-\t".join(
+            "  |  ".join(
                 [
                     self.username,
                     f"Level {self.level}",
@@ -32,9 +32,9 @@ class PlayerInfoDTO:
                 ]
             )
         )
-        print(f"\tTop 3 champions:")
+        print(f"  Top 3 champions:")
         for champion in self.champion_masteries:
             print(
-                f"\t\t{champion.champion_name} ({champion.champion_points}) - Level {champion.champion_level}"
+                f"    {champion.champion_name} ({champion.champion_points})  |  Level {champion.champion_level}"
             )
         print()
