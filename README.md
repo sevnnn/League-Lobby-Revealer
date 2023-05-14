@@ -15,41 +15,36 @@ CLI (for now) tool to reveal people in your ranked lobby. Written in Python 3.11
 <sup>dont worry i inted this game hard</sup>
 </details>
 
-## Installation
+## Installation & Usage
 
-1. Download Python [here](https://www.python.org/downloads/), then clone this repo:
+1. Download Python [here](https://www.python.org/downloads/)
+2. Install `poetry`
+
+```commandline
+pip install poetry
+```
+
+3. Clone this repo
 
 ```commandline
 git clone https://github.com/sevnnn/League-Lobby-Revealer.git
 cd League-Lobby-Revealer
 ```
 
-2. Next, setup your venv *(you can skip to 4. if you won't be using Python for anything else)*:
+5. Make sure that path set in `settings.ini` has correct information
+6. Run the script
 
 ```commandline
-python -m venv venv
+poetry run python main.py
 ```
 
-3. And activate it:
+7. *(Optional)* If you dont want to constantly call `poetry run`, you can enter poetry shell and execute this script there
+
 ```commandline
-./venv/Scripts/activate
-```
-
-4. Install required packages:
-```commandline
-pip install -r requirements.txt
-```
-
-5. Make sure that path set in `settings.ini` is correct
-
-## Usage
-
-While *(having `venv` activated and)* in champion select or in game run the script:
-```commandline
+poetry shell
+> Spawning shell within...
 python main.py
 ```
-
-Note that League-Lobby-Revealer is only supported on Windows.
 
 ## Roadmap
 
