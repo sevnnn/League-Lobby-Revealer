@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "league-lobby-revealer"
-version = "0.1.0"
-description = ""
-authors = ["llllllllllllllll <llllllllllllllll>"]
+name = "League Lobby Revealer"
+version = "1.0.0"
+description = "CLI (for now) tool to reveal people in your ranked lobby"
+authors = ["https://github.com/sevnnn"]
 readme = "README.md"
 packages = [{include = "league_lobby_revealer"}]
 
