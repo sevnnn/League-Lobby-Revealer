@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "league-lobby-revealer"
+version = "0.1.0"
+description = ""
+authors = ["llllllllllllllll <llllllllllllllll>"]
+readme = "README.md"
+packages = [{include = "league_lobby_revealer"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.30.0"
+black = "^23.3.0"
+urllib3 = "^2.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
